@@ -1,0 +1,2 @@
+# FinMind-AI
+FinMind AI
