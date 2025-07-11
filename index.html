@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FinMind AI - Controle Financeiro</title>
+    <script src="js/auth.js"></script>
+  </head>
+  <body>
+    <script>
+      // Verifica se o usuário está logado e redireciona
+      document.addEventListener("DOMContentLoaded", function () {
+        if (isAuthenticated()) {
+          window.location.href = "pages/dashboard.html";
+        } else {
+          window.location.href = "pages/login.html";
+        }
+      });
+    </script>
+  </body>
+</html>

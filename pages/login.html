@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - FinMind AI</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-card">
+        <div class="logo">
+          <div class="logo-image">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h1>FinMind AI</h1>
+          <p class="logo-subtitle">Controle Financeiro Inteligente</p>
+        </div>
+
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="login">Login</label>
+            <input type="text" id="login" required />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="password" id="password" required />
+            <button type="button" class="password-toggle">
+              <i class="fas fa-eye"></i>
+            </button>
+            <div class="error-message" id="passwordError">
+              A senha deve ter pelo menos 6 caracteres, incluindo letras e
+              números
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary">
+            <span class="btn-text">Entrar</span>
+          </button>
+
+          <div class="login-links">
+            <a href="#" id="forgotPassword">Esqueci minha senha</a>
+            <a href="#" id="showRegister">Criar nova conta</a>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal" id="registerModal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2>Cadastrar Novo Usuário</h2>
+          <form id="registerForm">
+            <div class="form-group">
+              <label for="regName">Nome Completo</label>
+              <input type="text" id="regName" required />
+            </div>
+
+            <div class="form-group">
+              <label for="regLogin">Login Desejado</label>
+              <input type="text" id="regLogin" required />
+            </div>
+
+            <div class="form-group">
+              <label for="regEmail">E-mail</label>
+              <input type="email" id="regEmail" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="regPhone">Telefone</label>
+                <input type="tel" id="regPhone" required />
+              </div>
+
+              <div class="form-group">
+                <label for="regAge">Idade</label>
+                <input type="number" id="regAge" min="18" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="regAddress">Endereço</label>
+              <input type="text" id="regAddress" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="regPassword">Senha</label>
+                <input type="password" id="regPassword" required />
+                <div class="password-strength" id="passwordStrength"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="regConfirmPassword">Confirmar Senha</label>
+                <input type="password" id="regConfirmPassword" required />
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary">
+              <span class="btn-text">Cadastrar</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script>
+      // Mostrar/ocultar senha
+      document
+        .querySelector(".password-toggle")
+        ?.addEventListener("click", function () {
+          const passwordInput = document.getElementById("password");
+          const icon = this.querySelector("i");
+
+          if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.classList.replace("fa-eye", "fa-eye-slash");
+          } else {
+            passwordInput.type = "password";
+            icon.classList.replace("fa-eye-slash", "fa-eye");
+          }
+        });
+
+      // Validação em tempo real da senha
+      document
+        .getElementById("password")
+        ?.addEventListener("input", function () {
+          const password = this.value;
+          const errorElement = document.getElementById("passwordError");
+
+          if (
+            password.length > 0 &&
+            !/(?=.*[A-Za-z])(?=.*\d).{6,}/.test(password)
+          ) {
+            errorElement.style.display = "block";
+          } else {
+            errorElement.style.display = "none";
+          }
+        });
+
+      // Força da senha no cadastro
+      document
+        .getElementById("regPassword")
+        ?.addEventListener("input", function () {
+          const password = this.value;
+          const strengthElement = document.getElementById("passwordStrength");
+
+          if (password.length === 0) {
+            strengthElement.textContent = "";
+            strengthElement.className = "password-strength";
+            return;
+          }
+
+          if (password.length < 6) {
+            strengthElement.textContent = "Fraca";
+            strengthElement.className = "password-strength weak";
+          } else if (!/(?=.*[A-Za-z])(?=.*\d)/.test(password)) {
+            strengthElement.textContent = "Média";
+            strengthElement.className = "password-strength medium";
+          } else {
+            strengthElement.textContent = "Forte";
+            strengthElement.className = "password-strength strong";
+          }
+        });
+    </script>
+  </body>
+</html>

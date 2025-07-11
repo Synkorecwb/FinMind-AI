@@ -1,0 +1,655 @@
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --accent-color: #4cc9f0;
+  --success-color: #4ad66d;
+  --warning-color: #f8961e;
+  --danger-color: #f94144;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+  --gray-color: #6c757d;
+  --white-color: #ffffff;
+
+  --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f5f7fa;
+  color: var(--dark-color);
+  line-height: 1.6;
+}
+
+/* ========== ESTILOS PARA LOGIN ========== */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  padding: 1rem;
+}
+
+.login-card {
+  background-color: var(--white-color);
+  border-radius: 10px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);
+}
+
+.logo-image {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 2.5rem;
+  margin: 0 auto 1rem;
+  box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
+}
+
+.logo h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.logo-subtitle {
+  color: var(--gray-color);
+  font-size: 0.9rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--dark-color);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.form-group input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.login-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.login-links a {
+  color: var(--gray-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.login-links a:hover {
+  color: var(--primary-color);
+}
+
+/* ========== MODAL DE CADASTRO ========== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--gray-color);
+  transition: var(--transition);
+}
+
+.close-modal:hover {
+  color: var(--danger-color);
+}
+
+/* Formulário em linhas */
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+/* ========== BOTÃO MOSTRAR/OCULTAR SENHA ========== */
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 38px;
+  background: none;
+  border: none;
+  color: var(--gray-color);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.password-toggle:hover {
+  color: var(--primary-color);
+}
+
+/* ========== MENSAGENS DE ERRO ========== */
+.error-message {
+  color: var(--danger-color);
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  display: none;
+}
+
+/* ========== FORÇA DA SENHA ========== */
+.password-strength {
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  display: none;
+}
+
+.password-strength.weak {
+  color: var(--danger-color);
+  display: block;
+}
+
+.password-strength.medium {
+  color: var(--warning-color);
+  display: block;
+}
+
+.password-strength.strong {
+  color: var(--success-color);
+  display: block;
+}
+
+/* ========== DASHBOARD ========== */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: var(--white-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  position: sticky;
+  top: 0;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-left h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark-color);
+}
+
+.header-left h1 span {
+  color: var(--primary-color);
+}
+
+#menuToggle {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--gray-color);
+  transition: var(--transition);
+}
+
+#menuToggle:hover {
+  color: var(--primary-color);
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 5px;
+  transition: var(--transition);
+}
+
+.user-menu:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.user-menu img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.app-content {
+  display: flex;
+  flex: 1;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: var(--white-color);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+  z-index: 90;
+}
+
+.main-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  flex: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  text-decoration: none;
+  color: var(--gray-color);
+  transition: var(--transition);
+  gap: 0.8rem;
+  border-left: 3px solid transparent;
+}
+
+.nav-item i {
+  width: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: var(--primary-color);
+  background-color: rgba(67, 97, 238, 0.1);
+  border-left-color: var(--primary-color);
+}
+
+.sidebar-footer {
+  padding: 1rem 0;
+  border-top: 1px solid #eee;
+}
+
+.main-content {
+  flex: 1;
+  padding: 1.5rem;
+  background-color: #f5f7fa;
+}
+
+/* ========== CONTEÚDO DO DASHBOARD ========== */
+.dashboard-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  transition: var(--transition);
+}
+
+.summary-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.summary-card h3 {
+  font-size: 1rem;
+  color: var(--gray-color);
+  margin-bottom: 0.5rem;
+}
+
+.summary-card .amount {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.summary-card.balance .amount {
+  color: var(--primary-color);
+}
+
+.summary-card.income .amount {
+  color: var(--success-color);
+}
+
+.summary-card.expenses .amount {
+  color: var(--danger-color);
+}
+
+.recent-transactions {
+  background-color: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+}
+
+.recent-transactions h3 {
+  margin-bottom: 1rem;
+  color: var(--dark-color);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th,
+td {
+  padding: 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  font-weight: 500;
+  color: var(--gray-color);
+  background-color: #f9f9f9;
+}
+
+tr.income td {
+  color: var(--success-color);
+}
+
+tr.expense td {
+  color: var(--danger-color);
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--gray-color);
+  font-size: 1rem;
+  margin: 0 0.3rem;
+  transition: var(--transition);
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+
+.btn-icon:hover {
+  color: var(--primary-color);
+  background-color: rgba(67, 97, 238, 0.1);
+}
+
+/* ========== RESPONSIVIDADE ========== */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    bottom: 0;
+    z-index: 1000;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .login-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "ai summary"
+      "alerts goals"
+      "tip tip";
+    gap: 1.5rem;
+  }
+}
+
+/* ========== ESTILOS PARA MODAL DE TRANSAÇÃO ========== */
+#transactionModal .modal-content {
+  max-width: 500px;
+}
+
+#transactionModal .form-group {
+  margin-bottom: 1.2rem;
+}
+
+#transactionModal label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+#transactionModal select,
+#transactionModal input {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+#transactionModal select:focus,
+#transactionModal input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+/* ========== ESTILOS PARA TABELAS ========== */
+.transactions-table,
+.categories-table,
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+.transactions-table th,
+.transactions-table td,
+.categories-table th,
+.categories-table td,
+.users-table th,
+.users-table td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.transactions-table th,
+.categories-table th,
+.users-table th {
+  background-color: #f9f9f9;
+  font-weight: 500;
+  color: var(--gray-color);
+}
+
+/* ========== BOTÕES DE AÇÃO ========== */
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--gray-color);
+  font-size: 1rem;
+  margin: 0 0.2rem;
+  transition: var(--transition);
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+
+.btn-icon:hover {
+  color: var(--primary-color);
+  background-color: rgba(67, 97, 238, 0.1);
+}
+
+/* ========== CABEÇALHOS DE SEÇÃO ========== */
+.transactions-header,
+.categories-header,
+.users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.transactions-header h2,
+.categories-header h2,
+.users-header h2 {
+  margin: 0;
+}
+
+/* ========== FILTROS ========== */
+.transactions-filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.transactions-filters select,
+.transactions-filters input {
+  padding: 0.6rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+/* ========== RESPONSIVIDADE ========== */
+@media (max-width: 768px) {
+  .transactions-filters {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .transactions-filters select,
+  .transactions-filters input {
+    width: 100%;
+  }
+
+  .transactions-header,
+  .categories-header,
+  .users-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
